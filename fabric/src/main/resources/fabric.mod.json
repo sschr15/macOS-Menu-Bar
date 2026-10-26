@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "macos_menu_bar",
+  "version": "${version}",
+  "name": "macOS Menu Bar",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MPL-2.0",
+  "icon": "assets/macos_menu_bar/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.sschr15.mods.menubar.MacosMenuBarClient"
+    ]
+  },
+  "mixins": [
+    "macos_menu_bar.mixins.json",
+    "macos_menu_bar.fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}"
+  }
+}

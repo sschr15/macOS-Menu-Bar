@@ -1,0 +1,16 @@
+modLoader = "javafml"
+loaderVersion = "[0,)"
+license = "MPL-2.0"
+
+[[mods]]
+modId = "macos_menu_bar"
+version = "${version}"
+displayName = "macOS Menu Bar"
+authors = "sschr15"
+
+[[dependencies.macos_menu_bar]]
+modId = "forge"
+mandatory = true
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"
