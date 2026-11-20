@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
@@ -78,6 +84,8 @@ subprojects {
         // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
         // If Javadoc is generated, this must be specified in that task too.
         options.encoding = "UTF-8"
+
+        if ("java22" in name) return@withType
         if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible) {
             options.release.set(targetJavaVersion)
         }

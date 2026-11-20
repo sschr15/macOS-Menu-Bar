@@ -1,4 +1,16 @@
 {
+  "key.mouse.force": "Force Click",
+  "option.macintegration.control_click_is_right_click": "Control+Click is Right Click",
+  "option.macintegration.use_legacy_fullscreen": "macOS Fullscreen Implementation",
+  "option.macintegration.use_legacy_fullscreen.disabled": "Default",
+  "option.macintegration.use_legacy_fullscreen.disabled.tooltip": "Use the built-in macOS fullscreen implementation. This is the most compatible option, but it does not support showing the window around the notch or dynamic island.",
+  "option.macintegration.use_legacy_fullscreen.glfw": "GLFW",
+  "option.macintegration.use_legacy_fullscreen.glfw.tooltip": "Use GLFW calls for \"legacy\" fullscreen. This is probably more compatible with other mods than with Objective-C, but fullscreen animations are unavailable. Using \"legacy\" fullscreen also does not move the window to its own Mission Control space.",
+  "option.macintegration.use_legacy_fullscreen.objc": "Objective-C",
+  "option.macintegration.use_legacy_fullscreen.objc.tooltip": "Use a more macOS-specialized implementation for \"legacy\" fullscreen. This provides all fullscreen animations, but has more potential to break with other mods. Using \"legacy\" fullscreen also does not move the window to its own Mission Control space.",
+  "option.macintegration.use_legacy_fullscreen.auto": "Automatic",
+  "option.macintegration.use_legacy_fullscreen.auto.tooltip": "Automatically choose between \"legacy\" fullscreen or the built-in macOS fullscreen implementation, based on the display Minecraft is on. Using \"legacy\" fullscreen is chosen when on a screen with notch or dynamic island in order to fill the entire screen, but it does not interface the same as a traditional fullscreen application.",
+  "macintegration.title": "Mac Integration",
   "menubar.app_menu.hide": "Hide Minecraft",
   "menubar.app_menu.hide_others": "Hide Others",
   "menubar.app_menu.quit": "Quit Minecraft",
@@ -18,9 +30,9 @@
   "menubar.debug.set_game_mode": "Set game mode",
   "menubar.debug.show_hitboxes": "Show hitboxes",
   "menubar.help": "Help",
-  "menubar.help.about": "About Java",
+  "menubar.help.about": "About Minecraft",
   "menubar.window": "Window",
-  "menubar.window.enter_full_screen": "Enter full screen",
+  "menubar.window.enter_full_screen": "Enter Full Screen",
   "menubar.window.minimize": "Minimize",
   "menubar.window.zoom": "Zoom"
 }

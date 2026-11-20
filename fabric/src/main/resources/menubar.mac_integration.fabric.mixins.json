@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.sschr15.mods.macintegration.menubar.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "compat.emi.EmiHistoryReader",
+    "compat.emi.EmiShowingScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "plugin": "com.sschr15.mods.macintegration.menubar.ModCompatMixinPlugin",
+  "mixins": [
+    "compat.emi.EmiHistoryOtherReader"
+  ]
+}

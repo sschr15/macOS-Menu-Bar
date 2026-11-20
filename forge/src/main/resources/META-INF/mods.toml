@@ -3,12 +3,12 @@ loaderVersion = "[0,)"
 license = "MPL-2.0"
 
 [[mods]]
-modId = "macos_menu_bar"
+modId = "mac_integration"
 version = "${version}"
 displayName = "macOS Menu Bar"
 authors = "sschr15"
 
-[[dependencies.macos_menu_bar]]
+[[dependencies.mac_integration]]
 modId = "forge"
 mandatory = true
 versionRange = "[0,)"

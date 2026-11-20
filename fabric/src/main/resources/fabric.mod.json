@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "macos_menu_bar",
+  "id": "mac-integraion",
   "version": "${version}",
-  "name": "macOS Menu Bar",
+  "name": "Mac Integration",
   "description": "",
   "authors": [],
   "contact": {},
@@ -11,12 +11,17 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.sschr15.mods.menubar.MacosMenuBarClient"
+      "com.sschr15.mods.macintegration.MacIntegrationFabric",
+      "com.sschr15.mods.macintegration.menubar.MacosMenuBarClient"
+    ],
+    "modmenu": [
+      "com.sschr15.mods.macintegration.ModMenuLoader"
     ]
   },
   "mixins": [
-    "macos_menu_bar.mixins.json",
-    "macos_menu_bar.fabric.mixins.json"
+    "menubar.mac_integration.mixins.json",
+    "menubar.mac_integration.fabric.mixins.json",
+    "inputs.mac_integration.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
