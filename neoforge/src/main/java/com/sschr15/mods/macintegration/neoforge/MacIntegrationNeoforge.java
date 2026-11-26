@@ -4,28 +4,44 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package com.sschr15.mods.macintegration;
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 
+package com.sschr15.mods.macintegration.neoforge;
+
+import com.sschr15.mods.macintegration.MacIntegration;
+import com.sschr15.mods.macintegration.Platform;
+import com.sschr15.mods.macintegration.gui.ModOptions;
+import com.sschr15.mods.macintegration.inputs.MacosInputs;
 import com.sschr15.mods.macintegration.menubar.DebugMenu;
 import com.sschr15.mods.macintegration.menubar.MacosMenuBar;
 import com.sschr15.mods.macintegration.menubar.objc.Submenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.gui.ModListScreen;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.client.gui.ModListScreen;
 
 import java.nio.file.Path;
 
 @Mod("mac_integration")
-public class MacIntegrationForge implements Platform {
-    public MacIntegrationForge() {
+public class MacIntegrationNeoforge implements Platform {
+    public MacIntegrationNeoforge(ModContainer mod) {
         MacIntegration.platform = this;
         MacIntegration.loadConfig();
 
         MacosMenuBar.registerMenubarSetup(bar -> {
             new DebugMenu().addMenu(bar);
         });
+
+        MacosInputs.init();
+
+        mod.registerExtensionPoint(IConfigScreenFactory.class, (ignored, screen) -> new ModOptions(screen, Minecraft.getInstance().options));
     }
 
     @Override
@@ -35,7 +51,8 @@ public class MacIntegrationForge implements Platform {
 
     @Override
     public String modLoaderInfo() {
-        return "MinecraftForge " + FMLLoader.versionInfo().forgeVersion();
+        return "NeoForge " + FMLLoader.versionInfo().neoForgeVersion() + "\n" +
+                "NeoForm " + FMLLoader.versionInfo().neoFormVersion();
     }
 
     @Override

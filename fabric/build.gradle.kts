@@ -46,11 +46,12 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:0.20.1")
 
-    modCompileOnly("maven.modrinth:iris:1.7.6+1.20.1")
+    modCompileOnly("maven.modrinth:iris:1.8.14-beta.1+1.21.1-fabric")
     modCompileOnly("dev.emi:emi-fabric:$emiVersion")
-    modImplementation("com.terraformersmc:modmenu:7.2.2")
+    modImplementation("com.terraformersmc:modmenu:11.0.5")
+    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:0.116.18+1.21.1")
 
-    modImplementation(include("net.fabricmc.fabric-api:fabric-resource-loader-v0:0.11.12+fb82e9d777")!!)
+    modImplementation(include("net.fabricmc.fabric-api:fabric-resource-loader-v0:1.3.1+5b5275af19")!!)
 }
 
 tasks {

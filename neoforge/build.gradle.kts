@@ -10,17 +10,7 @@ plugins {
 
 architectury {
     platformSetupLoomIde()
-    forge()
-}
-
-loom {
-    forge {
-        mixinConfig(
-            "inputs.mac_integration.mixins.json",
-            "menubar.mac_integration.mixins.json",
-            "notch.mac_integration.mixins.json",
-        )
-    }
+    neoForge()
 }
 
 val common = configurations.register("common") {
@@ -35,12 +25,16 @@ val shadowBundle = configurations.register("shadowBundle") {
 configurations {
     compileClasspath.get().extendsFrom(common.get())
     runtimeClasspath.get().extendsFrom(common.get())
-    getByName("developmentForge").extendsFrom(common.get())
+    getByName("developmentNeoForge").extendsFrom(common.get())
+}
+
+repositories {
+    maven("https://maven.neoforged.net/releases") { name = "NeoForged" }
 }
 
 val minecraftVersion = rootProject.property("minecraft_version").toString()
 val parchmentVersion = rootProject.property("parchment_version").toString()
-val forgeVersion = rootProject.property("forge_version").toString()
+val neoforgeVersion = rootProject.property("neoforge_version").toString()
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
@@ -50,10 +44,18 @@ dependencies {
         parchment("org.parchmentmc.data:parchment-$minecraftVersion:$parchmentVersion@zip")
     })
 
-    forge("net.minecraftforge:forge:$forgeVersion")
+    neoForge("net.neoforged:neoforge:$neoforgeVersion")
 
     common(project(path = ":common", configuration = "namedElements")) { isTransitive = false }
-    shadowBundle(project(path = ":common", configuration = "transformProductionForge"))
+    shadowBundle(project(path = ":common", configuration = "transformProductionNeoForge"))
+}
+
+tasks.processResources {
+    inputs.property("version", project.version)
+
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand(mapOf("version" to inputs.properties["version"]))
+    }
 }
 
 tasks {

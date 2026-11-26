@@ -77,7 +77,7 @@ subprojects {
         }
     }
 
-    val targetJavaVersion = 17
+    val targetJavaVersion = 21
     tasks.withType<JavaCompile> {
         // ensure that the encoding is set to UTF-8, no matter what the system default is
         // this fixes some edge cases with special characters not displaying correctly

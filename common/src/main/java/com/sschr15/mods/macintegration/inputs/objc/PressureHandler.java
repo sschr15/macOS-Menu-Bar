@@ -17,7 +17,7 @@ import com.sun.jna.*;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.controls.KeyBindsScreen;
+import net.minecraft.client.gui.screens.options.controls.KeyBindsScreen;
 
 public class PressureHandler {
     interface EventCallback extends Callback {
@@ -41,7 +41,7 @@ public class PressureHandler {
                 KeyMapping.set(FORCE_TOUCH, forceTouched);
                 if (forceTouched) {
                     if (previousStage != 2) {
-                        (FabricLoader.getInstance().isDevelopmentEnvironment() ? Platform.LOGGER.atInfo() : Platform.LOGGER.atDebug()).log("Force touched!");
+//                        (FabricLoader.getInstance().isDevelopmentEnvironment() ? Platform.LOGGER.atInfo() : Platform.LOGGER.atDebug()).log("Force touched!");
                         KeyMapping.click(FORCE_TOUCH);
                         handleKeyBindingScreen();
                     }

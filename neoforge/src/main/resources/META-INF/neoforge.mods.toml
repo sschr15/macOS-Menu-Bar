@@ -5,12 +5,19 @@ license = "MPL-2.0"
 [[mods]]
 modId = "mac_integration"
 version = "${version}"
-displayName = "macOS Menu Bar"
+displayName = "Mac Integration"
 authors = "sschr15"
 
 [[dependencies.mac_integration]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
 versionRange = "[0,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[mixins]]
+config = "menubar.mac_integration.mixins.json"
+[[mixins]]
+config = "inputs.mac_integration.mixins.json"
+[[mixins]]
+config = "notch.mac_integration.mixins.json"

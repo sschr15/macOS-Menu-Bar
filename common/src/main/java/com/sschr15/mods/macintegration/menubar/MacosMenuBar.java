@@ -19,7 +19,7 @@ import com.sschr15.mods.macintegration.objc.ObjCUtils;
 import com.sun.jna.Pointer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.CreditsAndAttributionScreen;
-import net.minecraft.client.gui.screens.OptionsScreen;
+import net.minecraft.client.gui.screens.options.OptionsScreen;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.ApiStatus;
 
