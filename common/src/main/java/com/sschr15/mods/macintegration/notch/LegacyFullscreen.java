@@ -9,6 +9,7 @@ package com.sschr15.mods.macintegration.notch;
 import com.demonwav.mcdev.annotations.Translatable;
 import com.llamalad7.mixinextras.lib.semver.Version;
 import com.mojang.serialization.Codec;
+import com.sschr15.mods.macintegration.MacIntegration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.gui.components.Tooltip;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
-public sealed interface LegacyFullscreen permits LegacyFullscreenGlfw, LegacyFullscreenObjC, LegacyFullscreen.NoOp {
+public sealed interface LegacyFullscreen permits LegacyFullscreenGlfw, LegacyFullscreenObjC, BuiltInFullscreen {
     Version MINIMUM_MACOS = Version.parse("12", false);
     OptionInstance<FullscreenImplementation> IMPLEMENTATION = new OptionInstance<>(
             "option.macintegration.use_legacy_fullscreen",
@@ -28,21 +29,11 @@ public sealed interface LegacyFullscreen permits LegacyFullscreenGlfw, LegacyFul
             OptionInstance.forOptionEnum(),
             new OptionInstance.Enum<>(Arrays.asList(FullscreenImplementation.values()), Codec.INT.xmap(FullscreenImplementation.BY_ID::apply, FullscreenImplementation::getId)),
             FullscreenImplementation.NONE,
-            ignored -> Minecraft.getInstance().options.save()
+            ignored -> MacIntegration.saveConfig()
     );
 
-    final class NoOp implements LegacyFullscreen {
-        @Override
-        public boolean useLegacyMethod() {
-            return false;
-        }
-
-        @Override
-        public void toggleFullscreen() {}
-    }
-
     enum FullscreenImplementation implements OptionEnum {
-        NONE(0, "disabled", new NoOp()),
+        NONE(0, "disabled", new BuiltInFullscreen()),
         AUTO_OBJC(1, "auto", new LegacyFullscreenObjC(false)),
         OBJC(2, "objc", new LegacyFullscreenObjC(true)),
         GLFW(3, "glfw", new LegacyFullscreenGlfw()),
@@ -73,4 +64,5 @@ public sealed interface LegacyFullscreen permits LegacyFullscreenGlfw, LegacyFul
 
     boolean useLegacyMethod();
     void toggleFullscreen();
+    boolean shutdown();
 }

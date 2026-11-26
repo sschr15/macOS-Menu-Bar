@@ -24,7 +24,7 @@ public class MacIntegrationFabric implements ClientModInitializer, Platform {
     @Override
     public void onInitializeClient() {
         MacosInputs.init();
-        MacIntegration.loadOptions();
+        MacIntegration.loadConfig();
     }
 
     @Override

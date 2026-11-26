@@ -26,6 +26,8 @@ import java.util.Locale;
 import java.util.Properties;
 
 public class ModOptions extends OptionsSubScreen {
+    private LegacyFullscreen.FullscreenImplementation current;
+
     public ModOptions(Screen parent, Options options) {
         super(parent, options, Component.translatable("macintegration.title"));
     }
@@ -34,7 +36,7 @@ public class ModOptions extends OptionsSubScreen {
     protected void init() {
         int x = width / 2 - 150;
         int y = height / 6 - 12;
-        addRenderableWidget(MacosInputs.CONTROL_CLICK_IS_RIGHT_CLICK.createButton(options, x, y, 300, this::save));
+        addRenderableWidget(MacosInputs.CONTROL_CLICK_IS_RIGHT_CLICK.createButton(options, x, y, 300, ignored -> MacIntegration.saveConfig()));
         y += 24;
         addRenderableWidget(LegacyFullscreen.IMPLEMENTATION.createButton(options, x, y, 300, this::save));
 
@@ -44,21 +46,16 @@ public class ModOptions extends OptionsSubScreen {
 
     @Override
     public void onClose() {
-        save(null);
+        MacIntegration.saveConfig();
         super.onClose();
     }
 
-    void save(Object ignored) {
-        Properties properties = new Properties();
-        properties.setProperty("ctrl_click", MacosInputs.CONTROL_CLICK_IS_RIGHT_CLICK.get().toString());
-        properties.setProperty("fullscreen_mode", LegacyFullscreen.IMPLEMENTATION.get().name().toLowerCase(Locale.ROOT));
-
-        Path config = MacIntegration.platform.getConfigPath();
-        try (var os = Files.newOutputStream(config)) {
-            properties.store(os, null);
-        } catch (IOException e) {
-            MacIntegration.LOGGER.error("Failed to write config", e);
+    void save(LegacyFullscreen.FullscreenImplementation implementation) {
+        boolean isFullscreen = current.implementation.shutdown();
+        if (isFullscreen) {
+            implementation.implementation.toggleFullscreen();
         }
+        current = implementation;
     }
 
     @Override

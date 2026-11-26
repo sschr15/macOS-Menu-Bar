@@ -21,7 +21,8 @@
   "mixins": [
     "menubar.mac_integration.mixins.json",
     "menubar.mac_integration.fabric.mixins.json",
-    "inputs.mac_integration.mixins.json"
+    "inputs.mac_integration.mixins.json",
+    "notch.mac_integration.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",

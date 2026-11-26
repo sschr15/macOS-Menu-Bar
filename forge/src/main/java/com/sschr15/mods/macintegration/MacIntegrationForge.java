@@ -12,9 +12,7 @@ import com.sschr15.mods.macintegration.menubar.objc.Submenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.client.gui.ModListScreen;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.nio.file.Path;
@@ -23,7 +21,7 @@ import java.nio.file.Path;
 public class MacIntegrationForge implements Platform {
     public MacIntegrationForge() {
         MacIntegration.platform = this;
-        MacIntegration.loadOptions();
+        MacIntegration.loadConfig();
 
         MacosMenuBar.registerMenubarSetup(bar -> {
             new DebugMenu().addMenu(bar);

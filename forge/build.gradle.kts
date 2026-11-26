@@ -15,7 +15,11 @@ architectury {
 
 loom {
     forge {
-        mixinConfig("inputs.mac_integration.mixins.json", "menubar.mac_integration.mixins.json")
+        mixinConfig(
+            "inputs.mac_integration.mixins.json",
+            "menubar.mac_integration.mixins.json",
+            "notch.mac_integration.mixins.json",
+        )
     }
 }
 

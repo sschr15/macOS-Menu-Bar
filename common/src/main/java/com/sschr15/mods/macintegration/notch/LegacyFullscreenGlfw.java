@@ -85,6 +85,15 @@ public final class LegacyFullscreenGlfw implements ObjCUtils, LegacyFullscreen {
         }
     }
 
+    @Override
+    public boolean shutdown() {
+        if (savedData != null) {
+            exitFullscreen();
+            return true;
+        }
+        return false;
+    }
+
     private long findMonitor() {
         if (identifyMacbookScreen() != -1) return macbookMonitor;
 

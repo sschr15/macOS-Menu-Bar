@@ -55,11 +55,21 @@ public final class LegacyFullscreenObjC implements LegacyFullscreen, ObjCUtils {
         }
     }
 
+    @Override
+    public boolean shutdown() {
+        if (oldFrame != null) {
+            exitFullscreen();
+            return true;
+        }
+
+        return false;
+    }
+
     private void enterFullscreen() {
         Proxy window = NSApp.sendProxy("mainWindow");
 
         oldMask = window.sendInt("styleMask");
-        window.send("setStyleMask:", 0); // borderless
+        window.send("setStyleMask:", 2 << 14); // borderless, fullscreen
 
         int options = NSApp.sendInt("presentationOptions");
         options |= ApplicationPresentationOptions.AUTO_HIDE_DOCK | ApplicationPresentationOptions.AUTO_HIDE_MENU_BAR;
