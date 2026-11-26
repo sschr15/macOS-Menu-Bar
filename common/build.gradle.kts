@@ -22,4 +22,6 @@ dependencies {
     })
 
     modImplementation("net.fabricmc:fabric-loader:0.20.1")
+    modCompileOnly("dev.emi:emi-xplat-intermediary:$emiVersion")
+    modCompileOnly("maven.modrinth:iris:1.8.14-beta.1+1.21.1-fabric")
 }

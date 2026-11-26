@@ -7,6 +7,10 @@
 package com.sschr15.mods.macintegration;
 
 import com.sschr15.mods.macintegration.inputs.MacosInputs;
+import com.sschr15.mods.macintegration.menubar.DebugMenu;
+import com.sschr15.mods.macintegration.menubar.EmiMenu;
+import com.sschr15.mods.macintegration.menubar.MacosMenuBar;
+import com.sschr15.mods.macintegration.menubar.ShadersMenu;
 import com.sschr15.mods.macintegration.menubar.objc.Submenu;
 import com.terraformersmc.modmenu.gui.ModsScreen;
 import net.fabricmc.api.ClientModInitializer;
@@ -16,38 +20,10 @@ import net.minecraft.network.chat.Component;
 
 import java.nio.file.Path;
 
-public class MacIntegrationFabric implements ClientModInitializer, Platform {
-    public MacIntegrationFabric() {
-        MacIntegration.platform = this;
-    }
-
+public class MacIntegrationFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         MacosInputs.init();
         MacIntegration.loadConfig();
-    }
-
-    @Override
-    public void addModsOption(Submenu appMenu) {
-        if (FabricLoader.getInstance().isModLoaded("modmenu")) {
-            ModMenuOption.init(appMenu);
-        }
-    }
-
-    @Override
-    public String modLoaderInfo() {
-        return FabricLoader.getInstance().getModContainer("fabricloader").map(mod -> mod.getMetadata().getName() + " " + mod.getMetadata().getVersion()).orElse("Fabric");
-    }
-
-    @Override
-    public Path getConfigPath() {
-        return FabricLoader.getInstance().getConfigDir().resolve("mac-integration.properties");
-    }
-}
-
-// separated to avoid potential class loading issues - optional dependencies is hard tm
-class ModMenuOption {
-    static void init(Submenu appMenu) {
-        appMenu.option(Component.translatable("modmenu.title"), "", () -> Minecraft.getInstance().setScreen(new ModsScreen(Minecraft.getInstance().screen)));
     }
 }

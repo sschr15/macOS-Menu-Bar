@@ -35,6 +35,7 @@ repositories {
 val minecraftVersion = rootProject.property("minecraft_version").toString()
 val parchmentVersion = rootProject.property("parchment_version").toString()
 val neoforgeVersion = rootProject.property("neoforge_version").toString()
+val emiVersion = rootProject.property("emi_version").toString()
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
@@ -48,6 +49,8 @@ dependencies {
 
     common(project(path = ":common", configuration = "namedElements")) { isTransitive = false }
     shadowBundle(project(path = ":common", configuration = "transformProductionNeoForge"))
+    
+    modRuntimeOnly("dev.emi:emi-neoforge:$emiVersion")
 }
 
 tasks.processResources {

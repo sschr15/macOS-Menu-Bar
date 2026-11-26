@@ -108,3 +108,19 @@ subprojects {
         }
     }
 }
+
+tasks {
+    val copyJars = register("copyJars", Copy::class) {
+        description = "Copy mod jars to root build/libs"
+        for (subproject in subprojects) {
+            val remapJar = subproject.tasks.findByName("remapJar") ?: continue
+            val platformSuffix = subproject.findProperty("loom.platform")?.toString() ?: continue
+            from(remapJar) {
+                rename(".jar", "-$platformSuffix.jar")
+            }
+        }
+        destinationDir = file("build/libs")
+    }
+
+    build.get().dependsOn(copyJars)
+}

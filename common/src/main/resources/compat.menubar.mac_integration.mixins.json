@@ -1,11 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.sschr15.mods.macintegration.menubar.mixin",
+  "package": "com.sschr15.mods.macintegration.menubar.mixin.compat",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "compat.emi.EmiHistoryReader",
-    "compat.emi.EmiShowingScreenMixin"
+    "emi.EmiHistoryReader",
+    "emi.EmiShowingScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -15,6 +15,6 @@
   },
   "plugin": "com.sschr15.mods.macintegration.menubar.ModCompatMixinPlugin",
   "mixins": [
-    "compat.emi.EmiHistoryOtherReader"
+    "emi.EmiHistoryOtherReader"
   ]
 }

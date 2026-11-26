@@ -22,4 +22,6 @@ public interface Platform {
     String modLoaderInfo();
 
     Path getConfigPath();
+
+    boolean isModLoaded(String mod);
 }

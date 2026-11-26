@@ -53,6 +53,8 @@ public class MacosMenuBar implements ObjCUtils {
 
     @ApiStatus.Internal
     public static void setup() {
+        StandardMenus.init();
+
         runOnRenderThread(() -> {
             menuBar = new MenuBar();
 

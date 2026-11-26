@@ -17,15 +17,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.ServiceLoader;
 
 @ApiStatus.Internal
 public class MacIntegration {
     public static final Logger LOGGER = LoggerFactory.getLogger(MacIntegration.class);
-    public static Platform platform;
+    public static final Platform platform = loadPlatform();
+    
+    private static Platform loadPlatform() {
+        return ServiceLoader.load(Platform.class)
+                .stream()
+                .map(ServiceLoader.Provider::get)
+                .filter(p -> p.getClass().getPackageName().startsWith("com.sschr15.mods.macintegration"))
+                .findAny()
+                .orElseThrow();
+    }
 
     public static void loadConfig() {
         try {
-            if (MacIntegration.platform == null) return;
             Path config = MacIntegration.platform.getConfigPath();
             if (!Files.isRegularFile(config)) return;
             Properties properties = new Properties();

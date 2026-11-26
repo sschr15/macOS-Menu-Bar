@@ -11,8 +11,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.sschr15.mods.macintegration.MacIntegrationFabric",
-      "com.sschr15.mods.macintegration.menubar.MacosMenuBarClient"
+      "com.sschr15.mods.macintegration.MacIntegrationFabric"
     ],
     "modmenu": [
       "com.sschr15.mods.macintegration.ModMenuLoader"
@@ -20,7 +19,7 @@
   },
   "mixins": [
     "menubar.mac_integration.mixins.json",
-    "menubar.mac_integration.fabric.mixins.json",
+    "compat.menubar.mac_integration.mixins.json",
     "inputs.mac_integration.mixins.json",
     "notch.mac_integration.mixins.json"
   ],

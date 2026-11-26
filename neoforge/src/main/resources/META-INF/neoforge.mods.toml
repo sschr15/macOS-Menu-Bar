@@ -18,6 +18,8 @@ side = "BOTH"
 [[mixins]]
 config = "menubar.mac_integration.mixins.json"
 [[mixins]]
+config = "compat.menubar.mac_integration.mixins.json"
+[[mixins]]
 config = "inputs.mac_integration.mixins.json"
 [[mixins]]
 config = "notch.mac_integration.mixins.json"
